@@ -30,11 +30,14 @@ generateInitialTweets();
 
 // GET /api/tweets - Returns all tweets
 router.get('/tweets', (req, res) => {
+    console.log('Fetching all tweets');
   res.json(tweets);
 });
 
 // GET /api/tweets/:id - Returns a tweet by ID
 router.get('/tweets/:id', (req, res) => {
+    console.log(`Fetching tweet with ID: ${req.params.id}`);
+
   const tweet = tweets.find(tweet => tweet.id === req.params.id);
   
   if (!tweet) {
@@ -46,6 +49,7 @@ router.get('/tweets/:id', (req, res) => {
 
 // POST /api/tweets/new - Generates a new random tweet
 router.post('/tweets/new', (req, res) => {
+    console.log('Generating a new random tweet');
   const newTweet = generateRandomTweet();
   tweets.push(newTweet);
   res.status(201).json(newTweet);
