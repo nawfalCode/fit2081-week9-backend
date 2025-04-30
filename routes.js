@@ -17,7 +17,7 @@ function generateInitialTweets(count = 10) {
 // Function to generate a single random tweet
 function generateRandomTweet() {
   return {
-    id: uuidv4(),
+    postId: uuidv4(),
     userName: getRandomName(),
     content: getRandomContent(),
     subject: getRandomSubject(),
@@ -38,7 +38,7 @@ router.get('/tweets', (req, res) => {
 router.get('/tweets/:id', (req, res) => {
     console.log(`Fetching tweet with ID: ${req.params.id}`);
 
-  const tweet = tweets.find(tweet => tweet.id === req.params.id);
+  const tweet = tweets.find(tweet => tweet.postId === req.params.id);
   
   if (!tweet) {
     return res.status(404).json({ error: 'Tweet not found' });
